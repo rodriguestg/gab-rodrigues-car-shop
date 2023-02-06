@@ -23,10 +23,18 @@ class CarController {
   searchCar = async (req: Request, res: Response) => {
     const { id } = req.params;
     const car = await this._carService.searchCar(id);
-    if (!car) {
-      return res.status(404).json({ message: 'Car not found' });
-    }
     return res.status(car.status).json(car.response);
+  };
+
+  updateCar = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const car = req.body;
+    const { status, response } = await this._carService.searchCar(id);
+    if (status !== 200) {
+      return res.status(status).json(response);
+    }
+    const update = await this._carService.updateCar(car, id);
+    return res.status(status).json(update);
   };
 }
 

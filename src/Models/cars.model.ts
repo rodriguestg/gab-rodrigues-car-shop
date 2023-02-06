@@ -67,6 +67,22 @@ class CarsModel {
     }
     // return { message: "Car not found" };
   }
+
+  public async updateCar(car: ICar, id: string) {
+    const currentCar = await this.model.findOne({ where: { _id: id } });
+      
+    if (currentCar) {
+      currentCar.model = car.model;
+      currentCar.year = car.year;
+      currentCar.color = car.color;
+      currentCar.status = car.status;
+      currentCar.buyValue = car.buyValue;
+      currentCar.doorsQty = car.doorsQty;
+      currentCar.seatsQty = car.seatsQty;
+      await currentCar.save();
+      return currentCar;
+    }
+  }
 }
 
 export default CarsModel;

@@ -34,8 +34,19 @@ class CarsService {
       const getCarDomains = new CarDomains(currentCar).getCar();
       return { status: 200, response: getCarDomains };
     }
-    
+
     return { status: 404, response: { message: 'Car not found' } };
+  };
+
+  updateCar = async (car: ICar, id: string) => {    
+    const currentCar = await this._carModel.updateCar(car, id);
+
+    if (currentCar) {
+      const getCarDomains = new CarDomains(currentCar).getCar();
+      return getCarDomains;
+    }
+
+    return currentCar;
   };
 }
 
