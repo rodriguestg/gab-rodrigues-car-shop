@@ -5,5 +5,7 @@ const carController = new CarsController();
 const route = express.Router();
 
 route.post('/', (req, res) => carController.registerCar(req, res));
+route.get('/', (req, res) => carController.listAllCars(req, res));
+route.get('/:id', (req, res) => carController.searchCar(req, res));
 
 export default route;

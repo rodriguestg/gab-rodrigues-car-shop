@@ -49,6 +49,24 @@ class CarsModel {
     const carCreate = await this.model.create({ ...newCar });
     return carCreate;
   }
+
+  public async listAllCars(): Promise<ICar[]> {
+    const currentCar = await this.model.find();
+    return currentCar;
+  }
+
+  public async searchCar(id: string): Promise<ICar | undefined> {
+    try {
+      const currentCar = await this.model.findOne({ _id: id });
+      if (currentCar) {
+        return currentCar;
+      }
+    } catch (error) {
+      // console.log(error);
+      return undefined;
+    }
+    // return { message: "Car not found" };
+  }
 }
 
 export default CarsModel;

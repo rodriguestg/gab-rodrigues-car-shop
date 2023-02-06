@@ -80,6 +80,17 @@ class Car {
     doorsQty: this.doorsQty,
     seatsQty: this.seatsQty,
   });
+
+  // public getAllCars = () => ({
+  //   id: this.id,
+  //   model: this.model,
+  //   year: this.year,
+  //   color: this.color,
+  //   status: this.status,
+  //   buyValue: this.buyValue,
+  //   doorsQty: this.doorsQty,
+  //   seatsQty: this.seatsQty,
+  // });
 }
 
 export default Car;
