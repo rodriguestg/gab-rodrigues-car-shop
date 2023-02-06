@@ -11,13 +11,13 @@ class CarsService {
   }
 
   registerCar = async (car: ICar) => {
-    const newCar = await this._carModel.registerCar(car);
+    const newCar = await this._carModel.registerVehicle(car);
     const newCarDomains = new CarDomains(newCar).getCar();
     return newCarDomains;
   };
 
   listAllCars = async () => {
-    const listCars = await this._carModel.listAllCars();
+    const listCars = await this._carModel.listAllVehicles();
     const listCarsDomains = listCars.map((car) => new CarDomains(car).getCar());
     return listCarsDomains;
   };
@@ -28,7 +28,7 @@ class CarsService {
       return { status: 422, response: { message: 'Invalid mongo id' } };
     }
 
-    const currentCar = await this._carModel.searchCar(id);
+    const currentCar = await this._carModel.searchVehicle(id);
     
     if (currentCar) {
       const getCarDomains = new CarDomains(currentCar).getCar();
@@ -39,7 +39,8 @@ class CarsService {
   };
 
   updateCar = async (car: ICar, id: string) => {    
-    const currentCar = await this._carModel.updateCar(car, id);
+    await this._carModel.updateVehicle(car, id);
+    const currentCar = await this._carModel.searchVehicle(id);
 
     if (currentCar) {
       const getCarDomains = new CarDomains(currentCar).getCar();

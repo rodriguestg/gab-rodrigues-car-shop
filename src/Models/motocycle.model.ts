@@ -1,10 +1,12 @@
-import { Schema } from 'mongoose';
-import ICar from '../Interfaces/ICar';
+import {
+  Schema,
+} from 'mongoose';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 import AbstractODM from './AbstractODM';
 
-class CarsModel extends AbstractODM<ICar> {
+class MotorcyclesModel extends AbstractODM<IMotorcycle> {
   constructor() {
-    const schema = new Schema<ICar>({
+    const schema = new Schema<IMotorcycle>({
       model: {
         type: 'String',
         required: true,
@@ -25,17 +27,18 @@ class CarsModel extends AbstractODM<ICar> {
         type: 'Number', 
         required: true,
       },
-      doorsQty: { 
-        type: 'Number', 
+      category: { 
+        type: 'String', 
         required: true,
       },
-      seatsQty: { 
+      engineCapacity: { 
         type: 'Number', 
         required: true,
       },
     });
-    super(schema, 'Car');
+
+    super(schema, 'Motorcycle');
   }
 }
 
-export default CarsModel;
+export default MotorcyclesModel;
